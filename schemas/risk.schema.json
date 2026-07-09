@@ -1,0 +1,36 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "definitions": {
+    "Severity": {
+      "enum": [
+        "P0",
+        "P1",
+        "P2",
+        "P3"
+      ],
+      "type": "string"
+    }
+  },
+  "properties": {
+    "id": {
+      "type": "string"
+    },
+    "impact": {
+      "$ref": "#/definitions/Severity"
+    },
+    "mitigation": {
+      "type": "string"
+    },
+    "title": {
+      "type": "string"
+    }
+  },
+  "required": [
+    "id",
+    "impact",
+    "mitigation",
+    "title"
+  ],
+  "title": "Risk",
+  "type": "object"
+}

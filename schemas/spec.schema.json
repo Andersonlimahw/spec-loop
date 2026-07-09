@@ -1,0 +1,57 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "definitions": {
+    "AcceptanceCriterion": {
+      "properties": {
+        "id": {
+          "type": "string"
+        },
+        "spec_id": {
+          "type": "string"
+        },
+        "statement": {
+          "type": "string"
+        },
+        "verification": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "id",
+        "spec_id",
+        "statement",
+        "verification"
+      ],
+      "type": "object"
+    }
+  },
+  "properties": {
+    "acceptance_criteria": {
+      "items": {
+        "$ref": "#/definitions/AcceptanceCriterion"
+      },
+      "type": "array"
+    },
+    "area": {
+      "type": "string"
+    },
+    "expected_behavior": {
+      "type": "string"
+    },
+    "id": {
+      "type": "string"
+    },
+    "title": {
+      "type": "string"
+    }
+  },
+  "required": [
+    "acceptance_criteria",
+    "area",
+    "expected_behavior",
+    "id",
+    "title"
+  ],
+  "title": "ProductSpec",
+  "type": "object"
+}

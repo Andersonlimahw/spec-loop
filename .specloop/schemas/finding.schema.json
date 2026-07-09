@@ -1,0 +1,186 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "definitions": {
+    "Evidence": {
+      "properties": {
+        "kind": {
+          "$ref": "#/definitions/EvidenceKind"
+        },
+        "location": {
+          "type": "string"
+        },
+        "summary": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "kind",
+        "location",
+        "summary"
+      ],
+      "type": "object"
+    },
+    "EvidenceKind": {
+      "enum": [
+        "screenshot",
+        "trace",
+        "console",
+        "network",
+        "dom",
+        "stdout",
+        "stderr",
+        "note"
+      ],
+      "type": "string"
+    },
+    "FindingStatus": {
+      "enum": [
+        "open",
+        "triaged",
+        "rejected",
+        "in-progress",
+        "fixed",
+        "verified"
+      ],
+      "type": "string"
+    },
+    "FindingType": {
+      "enum": [
+        "bug",
+        "ux",
+        "business-rule",
+        "spec-mismatch",
+        "security",
+        "accessibility",
+        "performance",
+        "data-quality",
+        "ai-behavior"
+      ],
+      "type": "string"
+    },
+    "RegressionKind": {
+      "enum": [
+        "unit",
+        "integration",
+        "playwright",
+        "manual"
+      ],
+      "type": "string"
+    },
+    "RegressionTestSuggestion": {
+      "properties": {
+        "assertion": {
+          "type": "string"
+        },
+        "kind": {
+          "$ref": "#/definitions/RegressionKind"
+        },
+        "steps": {
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "title": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "assertion",
+        "kind",
+        "steps",
+        "title"
+      ],
+      "type": "object"
+    },
+    "Severity": {
+      "enum": [
+        "P0",
+        "P1",
+        "P2",
+        "P3"
+      ],
+      "type": "string"
+    }
+  },
+  "properties": {
+    "actual_behavior": {
+      "type": "string"
+    },
+    "area": {
+      "type": "string"
+    },
+    "created_at": {
+      "type": "string"
+    },
+    "evidence": {
+      "items": {
+        "$ref": "#/definitions/Evidence"
+      },
+      "type": "array"
+    },
+    "expected_behavior": {
+      "type": "string"
+    },
+    "id": {
+      "type": "string"
+    },
+    "persona": {
+      "type": "string"
+    },
+    "related_business_rule": {
+      "type": "string"
+    },
+    "related_spec": {
+      "type": "string"
+    },
+    "reproduction_steps": {
+      "items": {
+        "type": "string"
+      },
+      "type": "array"
+    },
+    "severity": {
+      "$ref": "#/definitions/Severity"
+    },
+    "status": {
+      "$ref": "#/definitions/FindingStatus"
+    },
+    "suggested_fix": {
+      "type": "string"
+    },
+    "suggested_regression_test": {
+      "$ref": "#/definitions/RegressionTestSuggestion"
+    },
+    "suspected_cause": {
+      "type": "string"
+    },
+    "title": {
+      "type": "string"
+    },
+    "type": {
+      "$ref": "#/definitions/FindingType"
+    }
+  },
+  "required": [
+    "actual_behavior",
+    "area",
+    "created_at",
+    "evidence",
+    "expected_behavior",
+    "id",
+    "persona",
+    "related_business_rule",
+    "related_spec",
+    "reproduction_steps",
+    "severity",
+    "status",
+    "suggested_fix",
+    "suggested_regression_test",
+    "suspected_cause",
+    "title",
+    "type"
+  ],
+  "title": "Finding",
+  "type": "object"
+}

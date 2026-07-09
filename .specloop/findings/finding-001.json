@@ -1,0 +1,43 @@
+{
+  "id": "FINDING-001",
+  "title": "Uncaught 404 Console Errors on Landing Page",
+  "type": "spec-mismatch",
+  "severity": "P2",
+  "status": "open",
+  "area": "Landing & Content",
+  "persona": "visitor",
+  "related_spec": "SPEC-001",
+  "related_business_rule": "BR-001",
+  "expected_behavior": "The landing page and blog render without uncaught console errors or 404 failed resources.",
+  "actual_behavior": "Several resources failed to load with a 404 status, triggering console errors on page load.",
+  "suspected_cause": "Missing static assets or broken link pre-fetching in Next.js/production deployment.",
+  "suggested_fix": "Verify static assets availability and correct paths for pre-fetched routes or assets.",
+  "reproduction_steps": [
+    "Navigate to https://lemon.dev.br/pt",
+    "Open developer tools console",
+    "Observe 404 errors for failed resource loads"
+  ],
+  "evidence": [
+    {
+      "kind": "console",
+      "location": "console-errors",
+      "summary": "Failed to load resource: the server responded with a status of 404 ()"
+    },
+    {
+      "kind": "screenshot",
+      "location": ".specloop/screenshots/lemon-landing.png",
+      "summary": "Full-page screenshot of the landing page showing actual visual output"
+    }
+  ],
+  "suggested_regression_test": {
+    "title": "Check console for 404 errors during remote navigation",
+    "kind": "playwright",
+    "steps": [
+      "Open https://lemon.dev.br/pt",
+      "Wait for network idle",
+      "Scan console errors array for any HTTP 404 occurrences"
+    ],
+    "assertion": "Console error list should be empty"
+  },
+  "created_at": "2026-07-05T20:30:48-03:00"
+}

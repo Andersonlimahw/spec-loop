@@ -1,0 +1,13 @@
+/target/
+/.specloop/reports/*.md
+/.specloop/findings/*.md
+/.specloop/screenshots/
+/.specloop/traces/
+/.specloop/runtime/
+/apps/docs/dist/
+/apps/docs/node_modules/
+/apps/docs/.astro/
+*.log
+.DS_Store
+
+graphify-out

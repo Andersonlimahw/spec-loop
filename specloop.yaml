@@ -1,0 +1,36 @@
+schema_version: '0.1'
+project:
+  name: My SaaS
+  type: web-app
+  target_url: http://localhost:3000
+  environment: local
+agent:
+  mode: exploratory
+  provider_agnostic: true
+  cold_context_cache:
+  - .specloop/product.md
+  - .specloop/specs.md
+  - .specloop/business-rules.md
+  - .specloop/critical-flows.md
+  hot_context_sources:
+  - .specloop/risk-register.md
+  - .specloop/findings
+  - .specloop/reports
+browser:
+  engine: chrome-devtools-mcp
+  fallback: playwright
+  allow_browser_writes: false
+safety:
+  read_only_by_default: true
+  block_destructive_actions: true
+  require_approval_for_writes: true
+  block_production_writes: true
+  sanitize_logs: true
+  persist_cookies: false
+  trusted_mcp_servers:
+  - chrome-devtools-mcp
+outputs:
+  findings_dir: .specloop/findings
+  reports_dir: .specloop/reports
+  screenshots_dir: .specloop/screenshots
+  traces_dir: .specloop/traces

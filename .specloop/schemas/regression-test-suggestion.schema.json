@@ -1,0 +1,39 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "definitions": {
+    "RegressionKind": {
+      "enum": [
+        "unit",
+        "integration",
+        "playwright",
+        "manual"
+      ],
+      "type": "string"
+    }
+  },
+  "properties": {
+    "assertion": {
+      "type": "string"
+    },
+    "kind": {
+      "$ref": "#/definitions/RegressionKind"
+    },
+    "steps": {
+      "items": {
+        "type": "string"
+      },
+      "type": "array"
+    },
+    "title": {
+      "type": "string"
+    }
+  },
+  "required": [
+    "assertion",
+    "kind",
+    "steps",
+    "title"
+  ],
+  "title": "RegressionTestSuggestion",
+  "type": "object"
+}

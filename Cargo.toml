@@ -1,0 +1,37 @@
+[workspace]
+members = [
+  "crates/specloop-cli",
+  "crates/specloop-config",
+  "crates/specloop-core",
+  "crates/specloop-reporter",
+  "crates/specloop-safety",
+  "crates/specloop-schemas",
+  "crates/specloop-templates",
+]
+resolver = "3"
+
+[workspace.package]
+version = "0.1.0"
+edition = "2024"
+rust-version = "1.88"
+authors = ["Anderson Lima"]
+license = "LicenseRef-PolyForm-Noncommercial-1.0.0"
+repository = "https://github.com/Andersonlimahw/spec-loop"
+homepage = "https://github.com/Andersonlimahw/spec-loop"
+description = "Spec-driven QA loops for AI-native teams"
+
+[workspace.dependencies]
+anyhow = "1.0"
+clap = { version = "4.5", features = ["derive"] }
+schemars = { version = "0.8", features = ["derive"] }
+serde = { version = "1.0", features = ["derive"] }
+serde_json = "1.0"
+serde_yaml = "0.9"
+tempfile = "3.14"
+
+specloop-config = { path = "crates/specloop-config" }
+specloop-core = { path = "crates/specloop-core" }
+specloop-reporter = { path = "crates/specloop-reporter" }
+specloop-safety = { path = "crates/specloop-safety" }
+specloop-schemas = { path = "crates/specloop-schemas" }
+specloop-templates = { path = "crates/specloop-templates" }

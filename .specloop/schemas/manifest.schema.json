@@ -1,0 +1,282 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "definitions": {
+    "AcceptanceCriterion": {
+      "properties": {
+        "id": {
+          "type": "string"
+        },
+        "spec_id": {
+          "type": "string"
+        },
+        "statement": {
+          "type": "string"
+        },
+        "verification": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "id",
+        "spec_id",
+        "statement",
+        "verification"
+      ],
+      "type": "object"
+    },
+    "BusinessRule": {
+      "properties": {
+        "id": {
+          "type": "string"
+        },
+        "rule": {
+          "type": "string"
+        },
+        "severity_if_broken": {
+          "$ref": "#/definitions/Severity"
+        },
+        "title": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "id",
+        "rule",
+        "severity_if_broken",
+        "title"
+      ],
+      "type": "object"
+    },
+    "CriticalFlow": {
+      "properties": {
+        "blocked_actions": {
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "expected_outcome": {
+          "type": "string"
+        },
+        "id": {
+          "type": "string"
+        },
+        "persona_id": {
+          "type": "string"
+        },
+        "steps": {
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "title": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "blocked_actions",
+        "expected_outcome",
+        "id",
+        "persona_id",
+        "steps",
+        "title"
+      ],
+      "type": "object"
+    },
+    "Environment": {
+      "enum": [
+        "local",
+        "staging",
+        "production"
+      ],
+      "type": "string"
+    },
+    "Persona": {
+      "properties": {
+        "constraints": {
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "goals": {
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "id": {
+          "type": "string"
+        },
+        "name": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "constraints",
+        "goals",
+        "id",
+        "name"
+      ],
+      "type": "object"
+    },
+    "ProductSpec": {
+      "properties": {
+        "acceptance_criteria": {
+          "items": {
+            "$ref": "#/definitions/AcceptanceCriterion"
+          },
+          "type": "array"
+        },
+        "area": {
+          "type": "string"
+        },
+        "expected_behavior": {
+          "type": "string"
+        },
+        "id": {
+          "type": "string"
+        },
+        "title": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "acceptance_criteria",
+        "area",
+        "expected_behavior",
+        "id",
+        "title"
+      ],
+      "type": "object"
+    },
+    "ProjectConfig": {
+      "properties": {
+        "environment": {
+          "allOf": [
+            {
+              "$ref": "#/definitions/Environment"
+            }
+          ],
+          "default": "local"
+        },
+        "name": {
+          "default": "My SaaS",
+          "type": "string"
+        },
+        "target_url": {
+          "default": "http://localhost:3000",
+          "type": "string"
+        },
+        "type": {
+          "allOf": [
+            {
+              "$ref": "#/definitions/ProjectType"
+            }
+          ],
+          "default": "web-app"
+        }
+      },
+      "type": "object"
+    },
+    "ProjectType": {
+      "enum": [
+        "web-app",
+        "api",
+        "mobile-app",
+        "library",
+        "other"
+      ],
+      "type": "string"
+    },
+    "Risk": {
+      "properties": {
+        "id": {
+          "type": "string"
+        },
+        "impact": {
+          "$ref": "#/definitions/Severity"
+        },
+        "mitigation": {
+          "type": "string"
+        },
+        "title": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "id",
+        "impact",
+        "mitigation",
+        "title"
+      ],
+      "type": "object"
+    },
+    "Severity": {
+      "enum": [
+        "P0",
+        "P1",
+        "P2",
+        "P3"
+      ],
+      "type": "string"
+    }
+  },
+  "properties": {
+    "business_rules": {
+      "default": [],
+      "items": {
+        "$ref": "#/definitions/BusinessRule"
+      },
+      "type": "array"
+    },
+    "critical_flows": {
+      "default": [],
+      "items": {
+        "$ref": "#/definitions/CriticalFlow"
+      },
+      "type": "array"
+    },
+    "personas": {
+      "default": [],
+      "items": {
+        "$ref": "#/definitions/Persona"
+      },
+      "type": "array"
+    },
+    "project": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/ProjectConfig"
+        }
+      ],
+      "default": {
+        "environment": "local",
+        "name": "My SaaS",
+        "target_url": "http://localhost:3000",
+        "type": "web-app"
+      }
+    },
+    "risks": {
+      "default": [],
+      "items": {
+        "$ref": "#/definitions/Risk"
+      },
+      "type": "array"
+    },
+    "schema_version": {
+      "default": "0.1",
+      "type": "string"
+    },
+    "specs": {
+      "default": [],
+      "items": {
+        "$ref": "#/definitions/ProductSpec"
+      },
+      "type": "array"
+    }
+  },
+  "title": "Manifest",
+  "type": "object"
+}

@@ -1,0 +1,21 @@
+:root {
+  --sl-color-accent-low: #d7f7ee;
+  --sl-color-accent: #0d8f78;
+  --sl-color-accent-high: #063b34;
+  --sl-color-white: #f8fafc;
+  --sl-color-gray-1: #ecfdf7;
+  --sl-color-gray-2: #cbd5e1;
+  --sl-color-gray-3: #94a3b8;
+  --sl-color-gray-4: #64748b;
+  --sl-color-gray-5: #334155;
+  --sl-color-gray-6: #172033;
+  --sl-color-black: #07111f;
+}
+
+.hero img {
+  max-width: 9rem;
+}
+
+.card {
+  border-radius: 8px;
+}

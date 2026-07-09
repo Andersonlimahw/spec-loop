@@ -1,0 +1,18 @@
+[package]
+name = "specloop-cli"
+version.workspace = true
+edition.workspace = true
+rust-version.workspace = true
+authors.workspace = true
+license.workspace = true
+repository.workspace = true
+
+[dependencies]
+anyhow.workspace = true
+clap.workspace = true
+serde_json.workspace = true
+specloop-core.workspace = true
+
+[[bin]]
+name = "specloop"
+path = "src/main.rs"

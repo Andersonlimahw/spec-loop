@@ -1,0 +1,280 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "definitions": {
+    "AgentConfig": {
+      "properties": {
+        "cold_context_cache": {
+          "default": [
+            ".specloop/product.md",
+            ".specloop/specs.md",
+            ".specloop/business-rules.md",
+            ".specloop/critical-flows.md"
+          ],
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "hot_context_sources": {
+          "default": [
+            ".specloop/risk-register.md",
+            ".specloop/findings",
+            ".specloop/reports"
+          ],
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "mode": {
+          "allOf": [
+            {
+              "$ref": "#/definitions/AgentMode"
+            }
+          ],
+          "default": "exploratory"
+        },
+        "provider_agnostic": {
+          "default": true,
+          "type": "boolean"
+        }
+      },
+      "type": "object"
+    },
+    "AgentMode": {
+      "enum": [
+        "exploratory",
+        "regression",
+        "triage",
+        "documentation"
+      ],
+      "type": "string"
+    },
+    "BrowserConfig": {
+      "properties": {
+        "allow_browser_writes": {
+          "default": false,
+          "type": "boolean"
+        },
+        "engine": {
+          "allOf": [
+            {
+              "$ref": "#/definitions/BrowserEngine"
+            }
+          ],
+          "default": "chrome-devtools-mcp"
+        },
+        "fallback": {
+          "allOf": [
+            {
+              "$ref": "#/definitions/BrowserEngine"
+            }
+          ],
+          "default": "playwright"
+        }
+      },
+      "type": "object"
+    },
+    "BrowserEngine": {
+      "enum": [
+        "chrome-devtools-mcp",
+        "playwright",
+        "shell",
+        "none"
+      ],
+      "type": "string"
+    },
+    "Environment": {
+      "enum": [
+        "local",
+        "staging",
+        "production"
+      ],
+      "type": "string"
+    },
+    "OutputsConfig": {
+      "properties": {
+        "findings_dir": {
+          "default": ".specloop/findings",
+          "type": "string"
+        },
+        "reports_dir": {
+          "default": ".specloop/reports",
+          "type": "string"
+        },
+        "screenshots_dir": {
+          "default": ".specloop/screenshots",
+          "type": "string"
+        },
+        "traces_dir": {
+          "default": ".specloop/traces",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "ProjectConfig": {
+      "properties": {
+        "environment": {
+          "allOf": [
+            {
+              "$ref": "#/definitions/Environment"
+            }
+          ],
+          "default": "local"
+        },
+        "name": {
+          "default": "My SaaS",
+          "type": "string"
+        },
+        "target_url": {
+          "default": "http://localhost:3000",
+          "type": "string"
+        },
+        "type": {
+          "allOf": [
+            {
+              "$ref": "#/definitions/ProjectType"
+            }
+          ],
+          "default": "web-app"
+        }
+      },
+      "type": "object"
+    },
+    "ProjectType": {
+      "enum": [
+        "web-app",
+        "api",
+        "mobile-app",
+        "library",
+        "other"
+      ],
+      "type": "string"
+    },
+    "SafetyConfig": {
+      "properties": {
+        "block_destructive_actions": {
+          "default": true,
+          "type": "boolean"
+        },
+        "block_production_writes": {
+          "default": true,
+          "type": "boolean"
+        },
+        "persist_cookies": {
+          "default": false,
+          "type": "boolean"
+        },
+        "read_only_by_default": {
+          "default": true,
+          "type": "boolean"
+        },
+        "require_approval_for_writes": {
+          "default": true,
+          "type": "boolean"
+        },
+        "sanitize_logs": {
+          "default": true,
+          "type": "boolean"
+        },
+        "trusted_mcp_servers": {
+          "default": [
+            "chrome-devtools-mcp"
+          ],
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    }
+  },
+  "properties": {
+    "agent": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/AgentConfig"
+        }
+      ],
+      "default": {
+        "cold_context_cache": [
+          ".specloop/product.md",
+          ".specloop/specs.md",
+          ".specloop/business-rules.md",
+          ".specloop/critical-flows.md"
+        ],
+        "hot_context_sources": [
+          ".specloop/risk-register.md",
+          ".specloop/findings",
+          ".specloop/reports"
+        ],
+        "mode": "exploratory",
+        "provider_agnostic": true
+      }
+    },
+    "browser": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/BrowserConfig"
+        }
+      ],
+      "default": {
+        "allow_browser_writes": false,
+        "engine": "chrome-devtools-mcp",
+        "fallback": "playwright"
+      }
+    },
+    "outputs": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/OutputsConfig"
+        }
+      ],
+      "default": {
+        "findings_dir": ".specloop/findings",
+        "reports_dir": ".specloop/reports",
+        "screenshots_dir": ".specloop/screenshots",
+        "traces_dir": ".specloop/traces"
+      }
+    },
+    "project": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/ProjectConfig"
+        }
+      ],
+      "default": {
+        "environment": "local",
+        "name": "My SaaS",
+        "target_url": "http://localhost:3000",
+        "type": "web-app"
+      }
+    },
+    "safety": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/SafetyConfig"
+        }
+      ],
+      "default": {
+        "block_destructive_actions": true,
+        "block_production_writes": true,
+        "persist_cookies": false,
+        "read_only_by_default": true,
+        "require_approval_for_writes": true,
+        "sanitize_logs": true,
+        "trusted_mcp_servers": [
+          "chrome-devtools-mcp"
+        ]
+      }
+    },
+    "schema_version": {
+      "default": "0.1",
+      "type": "string"
+    }
+  },
+  "title": "SpecLoopConfig",
+  "type": "object"
+}

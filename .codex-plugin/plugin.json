@@ -1,0 +1,30 @@
+{
+  "name": "spec-loop",
+  "version": "0.1.0",
+  "description": "Spec-driven QA loops, browser scenarios, and scaffolded agent assets for AI-native teams.",
+  "author": {
+    "name": "Anderson Lima",
+    "url": "https://lemon.dev.br"
+  },
+  "homepage": "https://github.com/Andersonlimahw/spec-loop",
+  "repository": "https://github.com/Andersonlimahw/spec-loop",
+  "license": "LicenseRef-PolyForm-Noncommercial-1.0.0",
+  "keywords": ["qa", "browser-testing", "agents", "skills", "specloop"],
+  "skills": "skills",
+  "mcpServers": "./.mcp.json",
+  "interface": {
+    "displayName": "SpecLoop",
+    "shortDescription": "Run spec-driven QA loops with browser evidence.",
+    "longDescription": "SpecLoop adds reusable skills, browser MCP defaults, and scaffolded scripts for local or remote QA scenarios. It keeps runs read-only by default and records findings as structured evidence.",
+    "developerName": "Anderson Lima",
+    "category": "Developer Tools",
+    "capabilities": ["Interactive", "Write"],
+    "websiteURL": "https://github.com/Andersonlimahw/spec-loop",
+    "defaultPrompt": [
+      "Run a SpecLoop browser QA pass.",
+      "Create a SpecLoop scenario.",
+      "Scaffold SpecLoop agents and skills."
+    ],
+    "brandColor": "#84CC16"
+  }
+}
